@@ -12,7 +12,11 @@ function parpath = parentpath(subpaths)
 % __________________________________________________________________________
 if      nargin < 1, disp('USAGE: parpath = parentpath(subpaths)'); return; end
 if      iscell(subpaths), subpaths = char(subpaths); end
-if      size(subpaths, 1)==1, disp('Only one subpath! Doing nothing...'); return; end
+if      size(subpaths, 1)==1
+    parpath = fileparts(subpaths); 
+    disp('Only one subpath!'); 
+    return; 
+end
 
 % | Get indices of noncommon characters
 if      size(subpaths, 1)==2, diffidx = find(diff(subpaths));
