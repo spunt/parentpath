@@ -1,4 +1,4 @@
-function parpath = parentpath(subpaths)
+function [parpath, branchpar] = parentpath(subpaths)
 % PARENTPATH Find parent path from multiple subpaths
 %
 %   USAGE:      parpath = parentpath(subpaths)
@@ -24,6 +24,11 @@ else    diffidx = find(sum(diff(subpaths))); end
 
 % | Assign parent path
 parpath = fileparts(subpaths(1, 1:diffidx(1)));
+
+if nargout==2
+   tmp = regexp(regexprep(cellstr(subpaths), parpath, ''), filesep, 'split');
+   branchpar = cellfun(@(x) x(2), tmp); 
+end
 
 end
 
