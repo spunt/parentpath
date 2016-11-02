@@ -24,6 +24,7 @@ else    diffidx = find(sum(diff(subpaths))); end
 
 % | Assign parent path
 parpath = fileparts(subpaths(1, 1:diffidx(1)));
+if isempty(parpath), parpath = subpaths(1, 1:diffidx(1)); end
 
 if nargout==2
    tmp = regexp(regexprep(cellstr(subpaths), parpath, ''), filesep, 'split');
